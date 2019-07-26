@@ -1,4 +1,4 @@
-# Project #3 - Interactive Form
+# Project #4 - OOP Game Show App
 
 Fourth project in the FullStack JavaScript Techdegree.
 
