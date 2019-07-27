@@ -85,8 +85,8 @@ class Game
         this.missed++;
 
         if (this.missed === MAX_LIVES)
-            gameOver(false);
-    
+            this.gameOver(false);
+            
     }
 
     /**
@@ -95,13 +95,14 @@ class Game
      */
     gameOver(gameWon)
     {
-        const message = (gameWon) ? "Congratulations! You Won.." : "You lost, better luck next time..";
+        const message = (gameWon) ? "Congratulations, You Win!" : "You lost, better luck next time!";
         const gameOverH1 = document.querySelector('h1#game-over-message');
         gameOverH1.textContent = message; 
 
         const updatedClassName = (gameWon) ? 'win' : 'lose';
         const overlayDiv = document.querySelector('#overlay');
         overlayDiv.setAttribute('class', updatedClassName);
+        overlayDiv.style.visibility = "";
     }
 
 
