@@ -67,6 +67,7 @@ class Game
             if (charClass.slice(0,4) === "hide")
                 return false;
         }
+        this.gameOver(true);
         return true;
     }
 
@@ -103,10 +104,66 @@ class Game
         const overlayDiv = document.querySelector('#overlay');
         overlayDiv.setAttribute('class', updatedClassName);
         overlayDiv.style.visibility = "";
+
+        this.resetGameboard();
+        
+
     }
 
+    /**
+     * Handles onscreen keyboard button clicks
+     * @param (HTMLButtonElement) button - The clicked button element
+     */
+    handleInteraction(button) 
+    {
+        const letter = button.textContent;
+        
+        if (!(this.isAlreadyClicked(button)))
+        {
+    
+            if (!this.activePhrase.checkLetter(letter))
+            {
+                button.classList.add("wrong");
+                this.removeLife(); 
+            }
+            else
+            {
+                button.classList.add("chosen");
+                this.activePhrase.showMatchedLetter(letter);
+                if (this.checkForWin())
+                    this.gameOver(true);
+            }
+        }
+  
+    }
 
+    isAlreadyClicked(button)
+    {
+        const btnClass = button.classList[1]; 
+        return (btnClass === "chosen" || btnClass === "wrong"); 
+    }
 
+    resetGameboard()
+    {
+        // clear phrase letters from display
+        const phraseDiv = document.querySelector('#phrase');
+        const currUl = document.querySelector('#phrase > ul');
+        const emptyUl = document.createElement('ul');
+        phraseDiv.replaceChild(emptyUl,currUl);
 
+        // enable onscreen keyboard buttons
+        const letterButtons = document.querySelectorAll('div#qwerty > div.keyrow > button.key');
+        letterButtons.forEach( function(letterButton) {
+                letterButton.classList.remove("chosen");
+                letterButton.classList.remove("wrong");
+                const btnClass = letterButton.classList; 
+        });
+
+        // reset heart images
+        const heartImages = document.querySelectorAll('div#scoreboard > ol > li > img');
+        heartImages.forEach( function(image) {
+            image.setAttribute('src' , "images/liveHeart.png" );
+        });
+    }
 
 }
