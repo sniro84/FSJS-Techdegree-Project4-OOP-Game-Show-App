@@ -9,9 +9,10 @@
   --color-start: #5b85b7;
   --color-neutral: #445069;
   --color-neutral-light: #D2D2D2;
-  --color-keys: #37474F;
-  --color-keys-light: #E5E5E5;
+  --color-keys: rgb(32, 38, 41);
+  --color-keys-light: rgb(190, 150, 150);
   --font-size-large: 60px;
+  --font-size-almost-large: 40px;
   --font-size-medium: 20px;
   --transition: all .2s ease-in-out;
 }
@@ -20,7 +21,8 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Comic Sans MS", cursive, sans-serif;
+  
 }
 
 body {
@@ -28,30 +30,40 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
+  background-color: #675a80;
 }
 
 li, ol, ul {
   padding: 0;
   display: inline-block;
+  font-size: 30px;
 }
 
 h2 {
   margin: 0;
   text-transform: uppercase;
   font-size: var(--font-size-large);
+  font-weight: bold;
+  font-family: "Comic Sans MS", cursive, sans-serif;
   margin: 0;
+  color: #4ac0d5;
 }
 
 h1 {
   font-size: 30px;
+  font-weight: bold;
+  font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 button {
   margin: 6px;
-  border: 1px solid transparent;
+  border: 2px solid thick;
+  border-color : black;
   padding: .5rem 1rem;
   color: var(--color-keys);
   font-size: var(--font-size-medium);
+  font-weight: bold;
+  font-family: "Comic Sans MS", cursive, sans-serif;
   background-color: var(--color-keys-light);
   border-radius: 5px;
   -webkit-transition: var(--transition);
@@ -86,14 +98,17 @@ button {
 /* Title */
 
 .header {
-  color: #3a3f58;
+  color: #d6b627;
 }
 
 
 /* Phrase */
 
 .letter {
-  font-size: var(--font-size-medium);
+  font-size: var(--font-size-almost-large);
+  font-weight: bold;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  line-height: 50%; 
   height: 65px;
   width: 65px;
   padding: 20px 1px 0 1px;
@@ -104,7 +119,7 @@ button {
 }
 
 .space {
-  width: 15px;
+  width: 25px;
 }
 
 
@@ -112,14 +127,13 @@ button {
 .show {
   color: #fff;
   background-color: #4ac0d5;
-  font-size: 20px;
   height: 65px;
   width: 65px;
   padding: 20px 1px 0 1px;
   margin-right: 2px;
   border-radius: 5px;
-  -webkit-animation-duration: .5s;
-  animation-duration: .5s;
+  -webkit-animation-duration: 0.5s;
+  animation-duration: 0.5s;
 }
 
 
@@ -166,7 +180,7 @@ button {
   display: flex;
   flex-direction: column;
   position: fixed;
-  color: #FFFFFF;
+  color: rgb(87, 12, 58);
   justify-content: center;
   top: 0;
   bottom: 0;
@@ -176,15 +190,15 @@ button {
 }
 
 .title {
-  color: #FFF;
+  color: rgb(10, 117, 204);
 }
 
 .start {
-  background-color: #3a3f58;
+  background-color: #161c3b;
 }
 
 .start a {
-  color: #fff;
+  color: rgb(255, 255, 255);
 }
 
 .win {
@@ -196,7 +210,7 @@ button {
 }
 
 .lose {
-  background-color: #f5785f;
+  background-color: #f06b51;
 }
 
 .lose a {

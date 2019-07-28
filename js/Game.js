@@ -1,14 +1,22 @@
-/* Treehouse FSJS Techdegree
- * Project 4 - OOP Game App
- * Game.js */
+/******************************************
+Treehouse FSJS Techdegree:
+Project 4 - OOP Game App
+Name: Snir Holland
+Date: 29/07/2019
+
+File:  Game.js
+******************************************/
 
 class Game
 {
+    /**
+     * Constructs a game and initializes its properties with default values
+     */
     constructor()
     {
-       this.missed = 0;
-       this.phrases = this.createPhrases();
-       this.activePhrase = null;
+       this.missed = 0;                       // wrong user guesses
+       this.phrases = this.createPhrases();   // collection of phrases
+       this.activePhrase = null;              // phrase that the user need to guess
     }
 
     /**
@@ -20,10 +28,8 @@ class Game
         const phrases = [
             new Phrase("Curiosity Killed The Cat"),
             new Phrase("Beauty Is In The Eye Of The Beholder"),
-            new Phrase("You Cant Have Your Cake And Eat It Too"),
             new Phrase("Honesty is the best policy"),
             new Phrase("Laughter is the best medicine"),
-            new Phrase("The grass is always greener on the other side"),
             new Phrase("Two wrongs dont make a right")
         ]
         
@@ -45,14 +51,18 @@ class Game
      */
     startGame()
     {
+        // resets gameboard display (changes will be noticeable only if a previous game ended)
+        this.resetGameboard();
+
+        // hide overlay display 
         const overlayDiv = document.querySelector('#overlay');
         overlayDiv.style.visibility = "hidden";
+
+        // choose random phrase from collection and add it to display
         const phrase = this.getRandomPhrase();
         phrase.addPhraseToDisplay();
         this.activePhrase = phrase; 
     }
-
-
 
     /**
      * Checks for winning move
@@ -60,13 +70,18 @@ class Game
      */
     checkForWin() 
     {
+        // select all list items that contains the letters in the phrase
         const phraseLis = document.querySelectorAll('div#phrase > ul > li');
+
+        // search for a letter that is still hidden
         for(let i=0; i<phraseLis.length; i++)
         {
             let charClass = phraseLis[i].className;
-            if (charClass.slice(0,4) === "hide")
+            if (charClass.slice(0,4) === "hide")  // a hidden letter has been found
                 return false;
         }
+
+        // a hidden letter hasn't been found --> user won.
         this.gameOver(true);
         return true;
     }
@@ -78,13 +93,17 @@ class Game
      */
     removeLife() 
     {
-        const MAX_LIVES = 5;
-
+        // select heart images
         const heartImages = document.querySelectorAll('div#scoreboard > ol > li > img');
+        const MAX_LIVES = heartImages.length;
+        
+        // update an image lost heart display (from the right side) 
         heartImages[MAX_LIVES - 1 - this.missed].setAttribute('src' , "images/lostHeart.png" );
 
+        // update wrong user guesses
         this.missed++;
 
+        // check if the user lost the game
         if (this.missed === MAX_LIVES)
             this.gameOver(false);
             
@@ -104,10 +123,6 @@ class Game
         const overlayDiv = document.querySelector('#overlay');
         overlayDiv.setAttribute('class', updatedClassName);
         overlayDiv.style.visibility = "";
-
-        this.resetGameboard();
-        
-
     }
 
     /**
@@ -120,7 +135,6 @@ class Game
         
         if (!(this.isAlreadyClicked(button)))
         {
-    
             if (!this.activePhrase.checkLetter(letter))
             {
                 button.classList.add("wrong");
