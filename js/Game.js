@@ -27,9 +27,9 @@ class Game
     {
         const phrases = [
             new Phrase("Curiosity Killed The Cat"),
-            new Phrase("Beauty Is In The Eye Of The Beholder"),
-            new Phrase("Honesty is the best policy"),
-            new Phrase("Laughter is the best medicine"),
+            new Phrase("Live and learn"),
+            new Phrase("Break the ice"),
+            new Phrase("Actions speak louder than words"),
             new Phrase("Two wrongs dont make a right")
         ]
         
@@ -115,14 +115,20 @@ class Game
      */
     gameOver(gameWon)
     {
-        const message = (gameWon) ? "Congratulations, You Win!" : "You lost, better luck next time!";
-        const gameOverH1 = document.querySelector('h1#game-over-message');
-        gameOverH1.textContent = message; 
+        // freeze the screen for a second so that the user can see the entire phrase uncovered.
+        setTimeout(function() {
 
-        const updatedClassName = (gameWon) ? 'win' : 'lose';
-        const overlayDiv = document.querySelector('#overlay');
-        overlayDiv.setAttribute('class', updatedClassName);
-        overlayDiv.style.visibility = "";
+            // display win/lose message
+            const message = (gameWon) ? "Congratulations, You Win!" : "You lost, better luck next time!";
+            const gameOverH1 = document.querySelector('h1#game-over-message');
+            gameOverH1.textContent = message; 
+
+            // change class of the overlay div element
+            const updatedClassName = (gameWon) ? 'win' : 'lose';
+            const overlayDiv = document.querySelector('#overlay');
+            overlayDiv.setAttribute('class', updatedClassName);
+            overlayDiv.style.visibility = "";
+        }, 1000);
     }
 
     /**
@@ -132,31 +138,40 @@ class Game
     handleInteraction(button) 
     {
         const letter = button.textContent;
-        
+     
+        // if the button hasn't been clicked yet --> go inside.
         if (!(this.isAlreadyClicked(button)))
         {
-            if (!this.activePhrase.checkLetter(letter))
+            if (!this.activePhrase.checkLetter(letter))  // letter doesn't exist in phrase
             {
                 button.classList.add("wrong");
                 this.removeLife(); 
             }
-            else
+            else   //  letter exist in phrase
             {
                 button.classList.add("chosen");
                 this.activePhrase.showMatchedLetter(letter);
-                if (this.checkForWin())
+                if (this.checkForWin())   // user won. 
                     this.gameOver(true);
             }
         }
   
     }
 
+    /**
+     * Helper method that checks if a button has already been clicked.
+     * @param (HTMLButtonElement) button - The clicked button element
+     * @return {boolean} true if button has been clicked before, false otherwise.
+     */
     isAlreadyClicked(button)
     {
         const btnClass = button.classList[1]; 
         return (btnClass === "chosen" || btnClass === "wrong"); 
     }
 
+    /**
+     * Helper method that clears the screen and display a new gameboard.
+     */
     resetGameboard()
     {
         // clear phrase letters from display
@@ -179,5 +194,4 @@ class Game
             image.setAttribute('src' , "images/liveHeart.png" );
         });
     }
-
 }

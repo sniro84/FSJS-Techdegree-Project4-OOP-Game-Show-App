@@ -30,7 +30,8 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
-  background-color: #675a80;
+  background: linear-gradient(145deg,rgb(136, 33, 33),#07276b);
+  background-size: 150% 150%; 
 }
 
 li, ol, ul {
@@ -63,13 +64,18 @@ button {
   color: var(--color-keys);
   font-size: var(--font-size-medium);
   font-weight: bold;
-  font-family: "Comic Sans MS", cursive, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--color-keys-light);
   border-radius: 5px;
   -webkit-transition: var(--transition);
   -o-transition: var(--transition);
   transition: var(--transition);
   cursor: pointer;
+}
+
+button:hover {
+  background-color: rgb(16, 0, 104); /* Green */
+  color: white;
 }
 
 #btn__reset {
@@ -98,7 +104,7 @@ button {
 /* Title */
 
 .header {
-  color: #d6b627;
+  color: #ada069;
 }
 
 
@@ -152,7 +158,7 @@ button {
 }
 
 .wrong {
-  background: #f7a964;
+  background: #8d4b11;
   color: #FFFFFF;
 }
 
@@ -190,11 +196,11 @@ button {
 }
 
 .title {
-  color: rgb(10, 117, 204);
+  color: rgb(149, 175, 2);
 }
 
 .start {
-  background-color: #161c3b;
+  background: linear-gradient(145deg,#252523,#40633c);
 }
 
 .start a {
@@ -202,7 +208,7 @@ button {
 }
 
 .win {
-  background-color: var(--color-win);
+  background: linear-gradient(145deg,#0e90db,#0804f1);
 }
 
 .win a {
@@ -210,7 +216,7 @@ button {
 }
 
 .lose {
-  background-color: #f06b51;
+  background: linear-gradient(145deg,#9c6010,#f10404)
 }
 
 .lose a {
