@@ -51,8 +51,8 @@ class Game
      */
     startGame()
     {
-        // resets gameboard display (changes will be noticeable only if a previous game ended)
-        this.resetGameboard();
+        // resets gameboard display 
+        this.resetGameboard(); 
 
         // hide overlay display 
         const overlayDiv = document.querySelector('#overlay');
@@ -128,7 +128,8 @@ class Game
             const overlayDiv = document.querySelector('#overlay');
             overlayDiv.setAttribute('class', updatedClassName);
             overlayDiv.style.visibility = "";
-        }, 1000);
+
+        }, 1000);                  
     }
 
     /**
